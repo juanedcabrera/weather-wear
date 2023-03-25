@@ -13,13 +13,36 @@ button.addEventListener("click", () => {
   const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
 
   fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      temperatureElement.textContent = `${data.current.temp_f}°F`
-      descriptionElement.textContent = data.current.condition.text
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    temperature = data.current.temp_f;
+    conditionText = data.current.condition.text;
+    textWeather();
+    displayWeatherPic();
+  })
+  .catch((error) => {
+    console.error(error);
+  })
+
+
+function textWeather() {
+  temperatureElement.textContent = `${temperature}°F`;
+  descriptionElement.textContent = conditionText;
+}
+
+function displayWeatherPic() {
+  if (conditionText === 'Clear') {
+    displayImage('assets/sunny.png', 320, 250)
+  }
+}})
+
+function displayImage(src, width, height) {
+    let img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    document.body.appendChild(img);
+   }
+
+   // sunny, rain, snow, clouds, haze, hail, thunder
