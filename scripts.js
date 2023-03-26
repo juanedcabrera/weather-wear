@@ -29,6 +29,27 @@ button.addEventListener("click", () => {
     });
 });
 
+input.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    clearImage();
+    const location = input.value;
+    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
+
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        temperature = data.current.temp_f;
+        conditionText = data.current.condition.text;
+        code = data.current.condition.code;
+        console.log(code);
+        textWeather();
+        displayWeatherPic(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+});
 function clearImage() {
     const image = weatherBox.querySelector("img");
     if (image) {
