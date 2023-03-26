@@ -14,7 +14,7 @@ body {
 .container {
     position: relative;
     width: 300px;
-    height: 400px;
+    height: 525px;
     background: white;
     padding: 20px 30px;
     overflow: hidden;
@@ -103,3 +103,6 @@ body {
     opacity: 1;
 }
 
+div p {
+    margin:10px
+}

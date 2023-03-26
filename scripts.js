@@ -9,6 +9,7 @@ const input = searchBox.querySelector("input");
 const button = searchBox.querySelector("button");
 const temperatureElement = document.querySelector(".temperature");
 const descriptionElement = document.querySelector(".description");
+const suggestionElement = document.querySelector(".suggestion")
 const feelsLikeElement = document.querySelector(".feels-like")
 const humidityElement = document.querySelector(".humidity")
 const windElement = document.querySelector(".wind")
@@ -62,15 +63,27 @@ function getWeatherData() {
 }
 
 function textWeather(location, region, temperature, conditionText, feelsLike, humidity, wind) {
-  locationName.textContent = location;
-  locationRegion.textContent = region;
-  temperatureElement.textContent = `${temperature}°F`;
-  descriptionElement.textContent = conditionText;
-  feelsLikeElement.textContent = `Feels like ${feelsLike}°F`;
-  humidityElement.textContent = `The humidity is ${humidity} percent`
-  windElement.textContent = `Wind speed is ${wind} MPH`
-
-}
+    locationName.textContent = location;
+    locationRegion.textContent = region;
+    temperatureElement.textContent = `${temperature}°F`;
+    descriptionElement.textContent = conditionText;
+    feelsLikeElement.textContent = `Feels like ${feelsLike}°F`;
+    humidityElement.textContent = `The humidity is ${humidity} percent`
+    windElement.textContent = `Wind speed is ${wind} MPH`
+    
+    if (temperature >= 80 && temperature <= 100) {
+      suggestionElement.textContent = "Light, loose-fitting clothing made from breathable fabrics like cotton or linen. A sun hat and sunglasses can also be helpful.";
+    } else if (temperature >= 70 && temperature <= 79) {
+      suggestionElement.textContent = "Shorts or skirts with a light shirt, or pants with a t-shirt or light sweater. A light jacket or cardigan may be needed in the evenings.";
+    } else if (temperature >= 60 && temperature <= 69) {
+      suggestionElement.textContent = "Long pants or jeans with a long-sleeved shirt, sweater, or light jacket. Closed-toe shoes may also be necessary.";
+    } else if (temperature >= 50 && temperature <= 59) {
+      suggestionElement.textContent = "Layered clothing, such as a light sweater under a heavier jacket or coat, with long pants or jeans and closed-toe shoes or boots.";
+    } else if (temperature < 50) {
+      suggestionElement.textContent = "Heavy jackets or coats, scarves, hats, gloves, and warm, waterproof boots or shoes. Layers are still important, so consider wearing a warm sweater or thermal underwear under your outerwear.";
+    } 
+  }
+  
 
 
 function displayImage(src, width, height) {
