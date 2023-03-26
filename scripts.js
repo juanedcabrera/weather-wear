@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
+const weatherExtra = document.querySelector(".weather-extra");
 const weatherImage = document.querySelector("#weather-image");
 const apiKey = "8fa7b79b238742e580c192119232503";
 const searchBox = document.querySelector(".search-box");
@@ -23,6 +24,10 @@ input.addEventListener("keydown", (event) => {
     getWeatherData();
   }
 });
+
+input.addEventListener("click", () => {
+    input.value = "";
+  });
 
 function clearWeatherImage() {
   const image = weatherBox.querySelector("img");
@@ -63,7 +68,8 @@ function textWeather(location, region, temperature, conditionText, feelsLike, hu
   descriptionElement.textContent = conditionText;
   feelsLikeElement.textContent = `Feels like ${feelsLike}°F`;
   humidityElement.textContent = `The humidity is ${humidity} percent`
-  windElement.textContent = `Wind chill is ${wind} MPH`
+  windElement.textContent = `Wind speed is ${wind} MPH`
+
 }
 
 
@@ -82,7 +88,8 @@ function displayWeatherPic(data) {
     }
   });
 }
-// sunny, rain, snow, clouds, haze, hail, thunder
+
+
 
 const weatherStates = [
   {

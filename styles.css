@@ -8,7 +8,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: gray;
+    background: #303446;
 }
 
 .container {
@@ -33,7 +33,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .search-box input {
@@ -43,14 +43,16 @@ body {
     font-weight: 500;
     text-transform: uppercase;
     text-align: center;
+    border: 1px solid black;
 }
 
 .search-box input::placeholder {
     text-align: center;
+    justify-content: baseline;
     font-size: 20px;
     font-weight: 500;
-    color: black;
-    text-transform: capitalize;
+    color: darkgray;
+    text-transform: uppercase;
 }
 
 .search-box button {
@@ -71,17 +73,11 @@ body {
     font-size: 22px;
 }
 
-.search-box button:hover {
-    color: white;
-    background: black;
-}
-
 .weather-box {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin: 20px 0; */
     opacity: 1;
 }
 
@@ -105,10 +101,5 @@ body {
     text-align: center;
     margin: 20px 0;
     opacity: 1;
-}
-
-.fadeIn{
-    animation: 0.5s fadeIn forwards;
-    animation-delay: 0.5s;
 }
 
