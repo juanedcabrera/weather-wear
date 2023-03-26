@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
+const weatherImage = document.querySelector("#weather-image");
 const apiKey = "8fa7b79b238742e580c192119232503";
 const searchBox = document.querySelector(".search-box");
 const input = searchBox.querySelector("input");
@@ -9,6 +10,7 @@ const temperatureElement = document.querySelector(".temperature");
 const descriptionElement = document.querySelector(".description");
 
 button.addEventListener("click", () => {
+  clearImage();
   const location = input.value;
   const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
 
@@ -27,9 +29,21 @@ button.addEventListener("click", () => {
     });
 });
 
+function clearImage() {
+    const image = weatherBox.querySelector("img");
+    if (image) {
+      weatherBox.removeChild(image);
+    }
+  }
+
 function textWeather() {
   temperatureElement.textContent = `${temperature}°F`;
   descriptionElement.textContent = conditionText;
+}
+
+function displayWeatherPic(data) {
+  const iconUrl = `https:${data.current.condition.icon}`;
+  displayImage(iconUrl, 128, 128);
 }
 
 function displayImage(src, width, height) {
@@ -37,7 +51,7 @@ function displayImage(src, width, height) {
   img.src = src;
   img.width = width;
   img.height = height;
-  document.body.appendChild(img);
+  weatherBox.appendChild(img);
 }
 
 function displayWeatherPic(data) {
