@@ -50,10 +50,8 @@ function getWeatherData() {
       const temperature = data.current.temp_f;
       const conditionText = data.current.condition.text;
       const feelsLike = data.current.feelslike_f
-      const code = data.current.condition.code;
       const humidity = data.current.humidity
       const wind = data.current.wind_mph
-      console.log(data);
       textWeather(location, region, temperature, conditionText, feelsLike, humidity, wind);
       displayWeatherPic(data);
     })
@@ -65,23 +63,40 @@ function getWeatherData() {
 function textWeather(location, region, temperature, conditionText, feelsLike, humidity, wind) {
     locationName.textContent = location;
     locationRegion.textContent = region;
-    temperatureElement.textContent = `${temperature}°F`;
+    temperatureElement.textContent = `${Math.round(temperature)}°F`;
     descriptionElement.textContent = conditionText;
-    feelsLikeElement.textContent = `Feels like ${feelsLike}°F`;
-    humidityElement.textContent = `The humidity is ${humidity} percent`
-    windElement.textContent = `Wind speed is ${wind} MPH`
+    feelsLikeElement.textContent = ` Feels like ${Math.round(feelsLike)}°F`;
+    humidityElement.textContent = ` The humidity is ${Math.round(humidity)} percent`
+    windElement.textContent = ` Wind speed is ${Math.round(wind)} MPH`
     
     if (temperature >= 80 && temperature <= 100) {
-      suggestionElement.textContent = "Light, loose-fitting clothing made from breathable fabrics like cotton or linen. A sun hat and sunglasses can also be helpful.";
+      suggestionElement.textContent = " Light, loose-fitting clothing made from breathable fabrics like cotton or linen. A sun hat and sunglasses can also be helpful.";
     } else if (temperature >= 70 && temperature <= 79) {
-      suggestionElement.textContent = "Shorts or skirts with a light shirt, or pants with a t-shirt or light sweater. A light jacket or cardigan may be needed in the evenings.";
+      suggestionElement.textContent = " Shorts or skirts with a light shirt, or pants with a t-shirt or light sweater. A light jacket or cardigan may be needed in the evenings.";
     } else if (temperature >= 60 && temperature <= 69) {
-      suggestionElement.textContent = "Long pants or jeans with a long-sleeved shirt, sweater, or light jacket. Closed-toe shoes may also be necessary.";
+      suggestionElement.textContent = " Long pants or jeans with a long-sleeved shirt, sweater, or light jacket. Closed-toe shoes may also be necessary.";
     } else if (temperature >= 50 && temperature <= 59) {
-      suggestionElement.textContent = "Layered clothing, such as a light sweater under a heavier jacket or coat, with long pants or jeans and closed-toe shoes or boots.";
+      suggestionElement.textContent = " Layered clothing, such as a light sweater under a heavier jacket or coat, with long pants or jeans and closed-toe shoes or boots.";
     } else if (temperature < 50) {
-      suggestionElement.textContent = "Heavy jackets or coats, scarves, hats, gloves, and warm, waterproof boots or shoes. Layers are still important, so consider wearing a warm sweater or thermal underwear under your outerwear.";
+      suggestionElement.textContent = " Heavy jackets or coats, scarves, hats, gloves, and warm, waterproof boots or shoes. Layers are still important, so consider wearing a warm sweater or thermal underwear under your outerwear.";
     } 
+
+    const feelsLikeIcon = document.createElement("i");
+    feelsLikeIcon.classList.add("fas", "fa-temperature-low");
+    feelsLikeElement.insertBefore(feelsLikeIcon, feelsLikeElement.firstChild);
+  
+    const humidityIcon = document.createElement("i");
+    humidityIcon.classList.add("fas", "fa-tint");
+    humidityElement.insertBefore(humidityIcon, humidityElement.firstChild);
+  
+    const windIcon = document.createElement("i");
+    windIcon.classList.add("fas", "fa-wind");
+    windElement.insertBefore(windIcon, windElement.firstChild);
+  
+    const suggestionIcon = document.createElement("i");
+    suggestionIcon.classList.add("fas", "fa-lightbulb");
+    suggestionElement.insertBefore(suggestionIcon, suggestionElement.firstChild);
+  
   }
   
 
