@@ -34,7 +34,7 @@ The app is now ready to be used.
 
 ## Screenshots
 
-![App screenshot showing results of a Miami Beach](./miamibeach.png)
+![App screenshot showing results of a Miami Beach](./miami.png)
 
 
 
